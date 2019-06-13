@@ -1,3 +1,4 @@
+package com.example.appiumdemo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,10 +10,12 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 import io.appium.java_client.android.AndroidDriver;
 
-public class MyClass {
+public class Linear {
     AndroidDriver<WebElement> driver;
+    Actions action=new Actions(driver);
     @BeforeMethod
     public void bm() throws MalformedURLException {
         File classpathRoot = new File(System.getProperty("user.dir"));
@@ -28,26 +31,27 @@ public class MyClass {
 
         driver =new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
     }
-    @Test
+    @Test  //获取“管理我的运动记录”的id属性
     public void SportRecord(){
-        driver.findElement(By.id("manage_record")).click();
+        WebElement manage=driver.findElement(By.id("manage_record"));
+        action.click(manage);
 
         driver.currentActivity();
         System.out.println(11);
     }
-    @Test
+    @Test   //获取“高效跑步”的test属性
     public void ChooseTrain(){
        driver.findElementByAndroidUIAutomator
-            ("new UiSelector().text(\"日常拉伸\")").click();
+            ("new UiSelector().text(\"高效跑步\")").click();
         driver.currentActivity();
-        System.out.println(11);
+        System.out.println(9);
     }
 @Test
     public void ClickDiscover(){
     driver.findElementByAndroidUIAutomator
                        ("new UiSelector().text(\"发现\")").click();
     driver.findElementByAndroidUIAutomator
-            ("new UiSelector().text(\"和专业运动员学习呼吸\")").click();
+            ("new UiSelector().text(\"android.widget.TextView\")").click();
         String activity=driver.currentActivity();
         System.out.println(activity);
     }
